@@ -1,17 +1,18 @@
-localhost.localdomain:80 {
+localhost.local:80 {
   tls off
   root /helpy/public
 
   header /assets {
+    gzip
     Expires "Thu, 31 Dec 2037 23:55:55 GMT"
     Cache-Control public
   }
 
   proxy / helpy:8080/ {
     except /assets
-    proxy_header Host {host}
-    proxy_header X-Real-IP {remote}
-    proxy_header X-Forwarded-Proto {scheme}
+    header_upstream Host {host}
+    header_upstream X-Real-IP {remote}
+    header_upstream X-Forwarded-Proto {scheme}
   }
   log stdout
 }
