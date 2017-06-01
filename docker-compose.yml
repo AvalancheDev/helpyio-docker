@@ -23,7 +23,7 @@ services:
       - front
       - back
     volumes:
-      - rails-assets:/helpy/public/assets
+      - rails-assets:/helpy/public
     env_file: .env
     #environment:
     #  - DO_NOT_PREPARE=true

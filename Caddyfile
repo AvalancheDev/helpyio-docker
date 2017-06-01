@@ -1,4 +1,4 @@
-localhost.local:80 {
+0.0.0.0:80 {
   tls off
   root /helpy/public
 
@@ -8,8 +8,11 @@ localhost.local:80 {
     Cache-Control public
   }
 
+  header /uploads
+
   proxy / helpy:8080/ {
     except /assets
+    except /uploads
     header_upstream Host {host}
     header_upstream X-Real-IP {remote}
     header_upstream X-Forwarded-Proto {scheme}
